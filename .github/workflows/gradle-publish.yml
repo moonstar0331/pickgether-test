@@ -20,7 +20,7 @@ jobs:
         
         
       - name: secrets에 있는 APPLICATION 내용을 yml 파일에 덮어쓰기
-        run: echo "${{secrets.APPLICATION}}" > ./pickgether/src/main/resources/application.yml   # APPLICATION에 있는 내용 저 경로에 복붙좀 할게요
+        run: echo "${{secrets.APPLICATION}}" > ./src/main/resources/application.yml   # APPLICATION에 있는 내용 저 경로에 복붙좀 할게요
 
       
       - name: yml 파일 다운받을 수 있게 업로드
@@ -32,11 +32,11 @@ jobs:
           
           
       - name: gradlew 실행권한 주기
-        run: chmod +x ./pickgether/gradlew
+        run: chmod +x ./gradlew
       
       
       - name: 스프링부트 애플리케이션 빌드 
-        run: ./pickgether/gradlew clean build 
+        run: ./gradlew clean build 
 
       - name: 도커 이미지 빌드 
         run: docker build -t ${{ secrets.DOCKER_HUB_REPO }} .
