@@ -32,11 +32,11 @@ jobs:
           
           
       - name: gradlew 실행권한 주기
-        run: chmod +x pickgether/gradlew
+        run: chmod +x ./pickgether/gradlew
       
       
       - name: 스프링부트 애플리케이션 빌드 
-        run: pickgether/gradlew clean build 
+        run: ./pickgether/gradlew clean build 
 
       - name: 도커 이미지 빌드 
         run: docker build -t ${{ secrets.DOCKER_HUB_REPO }} .
