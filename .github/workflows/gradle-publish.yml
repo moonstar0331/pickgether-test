@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:                     # deploy라는 작업을 할것이고
-    runs-on: Amazon Linux    # 우분투 최신버전으로 진행 할게요
+    runs-on: ubuntu-latest    # 우분투 최신버전으로 진행 할게요
     steps:                    # 순서대로 실행하겠습니다
     
       - name: 저장소 Checkout        
