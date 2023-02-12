@@ -32,7 +32,7 @@ jobs:
           
           
       - name: gradlew 실행권한 주기
-        run: chmod +x gradlew
+        run: chmod +x ./pickgether/gradlew
       
       
       - name: 스프링부트 애플리케이션 빌드 
