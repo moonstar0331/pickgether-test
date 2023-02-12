@@ -37,6 +37,6 @@ dependencies {
 //	testImplementation 'org.testcontainers:mysql:1.15.3'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
+//tasks.named('test') {
+//	useJUnitPlatform()
+//}
