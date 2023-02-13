@@ -14,6 +14,7 @@ services:
       dockerfile: Dockerfile
       context: ./database
     image: moonsungkim/pickgether-database
+    platform: linux/amd64
     environment:
       - MARIADB_DATABASE=pickgether
       - MARIADB_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
