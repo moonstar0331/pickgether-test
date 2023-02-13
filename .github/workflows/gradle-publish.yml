@@ -58,7 +58,8 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            docker rm -f $(docker ps -qa)
-            docker pull moonsungkim/pickgether-app:latest
-            docker run -d --name pickgether-app -p 8080:8080 moonsungkim/pickgether
-            docker-compose up -d
+            docker stop ${{ secrets.CONTAINER_NAME }}
+            docker rm ${{ secrets.CONTAINER_NAME }}
+            docker image rm $(docker images -q)
+            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.DOCKER_CONTAINER_NAME}}
+            docker run -d --name ${{ secrets.CONTAINER_NAME }} -p 8080:8080 ${{ secrets.DOCKER_HUB_REPO }}
