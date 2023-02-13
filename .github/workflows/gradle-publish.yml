@@ -61,4 +61,4 @@ jobs:
             docker rm ${{ secrets.CONTAINER_NAME }}
             docker image rm $(docker images -q)
             docker pull ${{ secrets.DOCKER_HUB_REPO }}
-            docker run -d --name ${{ secrets.CONTAINER_NAME }} -p 80:8080 ${{ secrets.DOCKER_HUB_REPO }}
+            docker run -d --name ${{ secrets.CONTAINER_NAME }} -p 8080:8080 ${{ secrets.DOCKER_HUB_REPO }}
