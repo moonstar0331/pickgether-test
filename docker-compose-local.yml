@@ -5,7 +5,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./redis
-    image: moonsungkim/pickgether
+    image: moonsungkim/pickgether-redis
     ports:
       - "6379:6379"
   pickgether-database:
