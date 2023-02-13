@@ -59,8 +59,6 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            docker stop ${{ secrets.APP_CONTAINER_NAME }}
-            docker rm ${{ secrets.APP_CONTAINER_NAME }}
-            docker image rm $(docker images -q)
+            docker rmi ${{ secrets.DOCKER_USERNAME }}/pickgether
             docker pull ${{ secrets.DOCKER_HUB_REPO }}/pickgether
             docker-compose up -d
