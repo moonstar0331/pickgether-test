@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
       context: ./redis
     image: moonsungkim/pickgether-redis
+    platform: linux/amd64
     ports:
       - "6379:6379"
   pickgether-database:
