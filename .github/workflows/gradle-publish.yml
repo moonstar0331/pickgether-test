@@ -62,7 +62,7 @@ jobs:
             docker stop ${{ secrets.APP_CONTAINER_NAME }}
             docker rm ${{ secrets.APP_CONTAINER_NAME }}
             docker image rm $(docker images -q)
-            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.REDIS_CONTAINER_NAME}}
-            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.DB_CONTAINER_NAME}}
-            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.APP_CONTAINER_NAME}}
+            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.REDIS_CONTAINER_NAME}}:latest
+            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.DB_CONTAINER_NAME}}:latest
+            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.APP_CONTAINER_NAME}}:latest
             docker run -d --name ${{ secrets.APP_CONTAINER_NAME }} -p 80:8080 ${{ secrets.DOCKER_HUB_REPO }}
