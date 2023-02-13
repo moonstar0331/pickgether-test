@@ -60,5 +60,6 @@ jobs:
           script: |
             docker rm -f $(docker ps -qa)
             docker pull moonsungkim/pickgether-app:latest
+            docker run -d --name pickgether-app -p 8080:8080 moonsungkim/pickgether
             docker-compose up -d
             docker image prune -f
