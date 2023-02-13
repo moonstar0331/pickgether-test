@@ -15,10 +15,9 @@ services:
       context: ./database
     image: moonsungkim/pickgether-database
     environment:
-      - MYSQL_DATABASE=pickgether
-      - MYSQL_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - MARIADB=pickgether
+      - MARIADB_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
     volumes:
-#      - ./database/config:/etc/mysql/my.conf
       - ./database/config:/etc/mysql/conf.d
       - ./database/init:/docker-entrypoint-initdb.d
     ports:
