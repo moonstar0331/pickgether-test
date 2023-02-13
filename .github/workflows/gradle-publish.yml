@@ -60,6 +60,6 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
             docker rm -f $(docker ps -qa)
-            docker pull ${{ secrets.DOCKER_HUB_REPO }}
+            docker pull moonsungkim/pickgether-app
             docker-compose up -d
             docker image prune -f
