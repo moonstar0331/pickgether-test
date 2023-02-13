@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  pickgether-redis:
+    container_name: pickgether-redis
+    build:
+      dockerfile: Dockerfile
+      context: ./redis
+    image: moonsungkim/pickgether
+    ports:
+      - "6379:6379"
+  pickgether-database:
+    container_name: pickgether-database
+    build:
+      dockerfile: Dockerfile
+      context: ./database
+    image: moonsungkim/pickgether-database
+    environment:
+      - MARIADB_DATABASE=pickgether
+      - MARIADB_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./database/config:/etc/mysql/conf.d
+      - ./database/init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
