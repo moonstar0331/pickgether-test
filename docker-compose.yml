@@ -15,7 +15,7 @@ services:
       context: ./database
     image: moonsungkim/pickgether-database
     environment:
-      - MARIADB=pickgether
+      - MARIADB_DATABASE=pickgether
       - MARIADB_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
     volumes:
       - ./database/config:/etc/mysql/conf.d
