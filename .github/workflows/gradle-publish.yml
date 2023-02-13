@@ -65,4 +65,5 @@ jobs:
             docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.REDIS_CONTAINER_NAME}}:latest
             docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.DB_CONTAINER_NAME}}:latest
             docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.APP_CONTAINER_NAME}}:latest
-            docker run -d --name ${{ secrets.APP_CONTAINER_NAME }} -p 8080:8080 ${{ secrets.DOCKER_HUB_REPO }}
+            docker-compose up -d
+            docker image prune -f
