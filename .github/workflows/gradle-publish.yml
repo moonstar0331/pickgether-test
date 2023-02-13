@@ -58,6 +58,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker stop ${{ secrets.APP_CONTAINER_NAME }}
             docker rm ${{ secrets.APP_CONTAINER_NAME }}
             docker image rm $(docker images -q)
