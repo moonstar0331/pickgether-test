@@ -50,7 +50,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Hub 퍼블리시 
-        run: docker push moonsungkim/pickgether-app:latest
+        run: docker push moonsungkim/pickgether:latest
 
       - name: WAS 인스턴스 접속 및 애플리케이션 실행 
         uses: appleboy/ssh-action@v0.1.6
@@ -60,6 +60,6 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
             docker rm -f $(docker ps -qa)
-            docker pull moonsungkim/pickgether-app
+            docker pull moonsungkim/pickgether:latest
             docker-compose up -d
             docker image prune -f
