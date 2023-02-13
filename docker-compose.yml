@@ -28,7 +28,7 @@ services:
     depends_on:
       - pickgether-database
       - pickgether-redis
-    image: pickgether-app
+    image: moonsungkim/pickgether-app
     environment:
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
