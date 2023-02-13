@@ -50,7 +50,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Hub 퍼블리시 
-        run: docker push ${{ secrets.DOCKER_HUB_REPO }}/pickgether
+        run: docker push ${{ secrets.DOCKER_HUB_REPO }}/pickgether:latest
 
       - name: WAS 인스턴스 접속 및 애플리케이션 실행 
         uses: appleboy/ssh-action@v0.1.6
