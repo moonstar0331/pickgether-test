@@ -58,8 +58,8 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            docker stop ${{ secrets.CONTAINER_NAME }}
-            docker rm ${{ secrets.CONTAINER_NAME }}
+            docker stop ${{ secrets.APP_CONTAINER_NAME }}
+            docker rm ${{ secrets.APP_CONTAINER_NAME }}
             docker image rm $(docker images -q)
-            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.DOCKER_CONTAINER_NAME}}
-            docker run -d --name ${{ secrets.CONTAINER_NAME }} -p 80:8080 ${{ secrets.DOCKER_HUB_REPO }}
+            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.APP_CONTAINER_NAME}}
+            docker run -d --name ${{ secrets.APP_CONTAINER_NAME }} -p 80:8080 ${{ secrets.DOCKER_HUB_REPO }}
