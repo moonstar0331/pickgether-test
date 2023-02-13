@@ -30,18 +30,16 @@ jobs:
           path: ./src/main/resources/
           
           
+          
       - name: gradlew 실행권한 주기
         run: chmod +x ./gradlew
       
       
       - name: 스프링부트 애플리케이션 빌드 
         run: ./gradlew clean build
-        
 
       - name: 도커 이미지 빌드 
-        run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t moonsungkim/pickgether-app .
+        run: docker build -t ${{ secrets.DOCKER_HUB_REPO }} .
 
       - name: Docker Hub 로그인 
         uses: docker/login-action@v2
@@ -50,7 +48,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Hub 퍼블리시 
-        run: docker push moonsungkim/pickgether:latest
+        run: docker push ${{ secrets.DOCKER_HUB_REPO }}/pickgether-app
 
       - name: WAS 인스턴스 접속 및 애플리케이션 실행 
         uses: appleboy/ssh-action@v0.1.6
@@ -59,7 +57,8 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            docker rm -f $(docker ps -qa)
-            docker pull moonsungkim/pickgether:latest
-            docker-compose up -d
-            docker image prune -f
+            docker stop ${{ secrets.CONTAINER_NAME }}
+            docker rm ${{ secrets.CONTAINER_NAME }}
+            docker image rm $(docker images -q)
+            docker pull ${{ secrets.DOCKER_HUB_REPO }}/pickgether-app
+            docker run -d --name ${{ secrets.CONTAINER_NAME }} -p 8080:8080 ${{ secrets.DOCKER_HUB_REPO }}
