@@ -35,7 +35,7 @@ jobs:
       
       
       - name: 스프링부트 애플리케이션 빌드 
-        run: ./gradlew clean build
+        run: ./gradlew bootJar
         
 
       - name: 도커 이미지 빌드 
@@ -62,9 +62,5 @@ jobs:
             docker stop ${{ secrets.APP_CONTAINER_NAME }}
             docker rm ${{ secrets.APP_CONTAINER_NAME }}
             docker image rm $(docker images -q)
-            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.REDIS_CONTAINER_NAME}}:latest
-            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.DB_CONTAINER_NAME}}:latest
-            docker pull ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.APP_CONTAINER_NAME}}:latest
-            docker build -t ${{ secrets.DOCKER_HUB_REPO }}/${{secrets.APP_CONTAINER_NAME}} .
-            docker-compose -f docker-compose.yml up
-            docker image prune -f
+            docker pull ${{ secrets.DOCKER_HUB_REPO }}/pickgether
+            docker-compose up -d
